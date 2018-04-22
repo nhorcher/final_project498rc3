@@ -1,0 +1,9 @@
+North 10 steps, slight pause 5 steps
+pause
+South 15 steps
+pause
+West 8 steps 
+pause
+East 10 steps
+
+Check out the dips on the gyro Z-data
