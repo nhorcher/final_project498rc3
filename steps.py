@@ -47,11 +47,69 @@ for i in range(len(z)-1):
 # for i in range(len(z)-2*window-1):
 # 	theta3[i] = (sum(z[i+1:i+1+2*window]) - sum(z[i:i+2*window]))/((2*window))
 
+win = 10
+step_on = 0
+gap = 0
+step_size = 0
+right_step_count = 0
+
+rsteeeps = np.zeros(len(right_steps))
+for point,i in zip(right_steps,range(len(right_steps))):
+
+	if point == 1:
+		step_size = step_size+1
+		gap = 0
+		if step_size > win:
+			step_on = 1
+
+	elif point == 0:
+		if step_on == 1:
+			if gap > win:
+				gap = 0
+				step_on = 0
+				right_step_count = right_step_count + 1
+				rsteeeps[i] = 5;
+			else:
+				gap = gap + 1
+
+print(right_step_count, 'Right Steps')
+
+
+### Same thing with left
+win = 10
+step_on = 0
+gap = 0
+step_size = 0
+left_step_count = 0
+
+lsteeeps = np.zeros(len(left_steps))
+for point,i in zip(left_steps,range(len(left_steps))):
+
+	if point == 1:
+		step_size = step_size+1
+		gap = 0
+		if step_size > win:
+			step_on = 1
+
+	elif point == 0:
+		if step_on == 1:
+			if gap > win:
+				gap = 0
+				step_on = 0
+				left_step_count = left_step_count + 1
+				lsteeeps[i] = 5;
+			else:
+				gap = gap + 1
+
+print(left_step_count, 'Left Steps')
+
 plt.figure()
 plt.title('z and left steps')
 plt.plot(z)
 plt.plot(right_steps)
-plt.plot(left_steps)
+plt.plot(rsteeeps)
+# plt.plot(lsteeeps)
+# plt.plot(left_steps)
 # plt.plot(divisions)
 # plt.plot(theta)
 # plt.plot(theta2[window:])
