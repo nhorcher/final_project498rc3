@@ -117,3 +117,9 @@ print(left_step_count/2, 'Left Steps')
 # plt.plot(theta2[window:])
 # plt.plot(theta3[window*2:])
 # plt.show()
+
+if left_step_count/2 >= right_step_count:
+	dist = right_step_count*3.0
+else:
+	dist = right_step_count*2.6
+print('Distance = ', dist)
