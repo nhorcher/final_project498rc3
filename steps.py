@@ -25,7 +25,7 @@ divisions = np.zeros(len(z))
 right_threshold = -1.7
 left_threshold  = 1.1
 
-divisions[0::150] = 5;
+# divisions[0::150] = 5;
 
 for i in range(len(z)):
 	if z[i] < right_threshold:
@@ -33,13 +33,13 @@ for i in range(len(z)):
 	if z[i] > left_threshold:
 		left_steps[i] = 1
 
-theta = np.zeros(len(z-1))
-theta2 = np.zeros(len(z-1))
-theta3 = np.zeros(len(z-1))
-window = 5
+# theta = np.zeros(len(z-1))
+# theta2 = np.zeros(len(z-1))
+# theta3 = np.zeros(len(z-1))
+# window = 5
 
-for i in range(len(z)-1):
-	theta[i] = z[i+1] - z[i]
+# for i in range(len(z)-1):
+# 	theta[i] = z[i+1] - z[i]
 
 # for i in range(len(z)-window-1):
 # 	theta2[i] = (sum(z[i+1:i+1+window]) - sum(z[i:i+window]))/(window)
@@ -47,7 +47,7 @@ for i in range(len(z)-1):
 # for i in range(len(z)-2*window-1):
 # 	theta3[i] = (sum(z[i+1:i+1+2*window]) - sum(z[i:i+2*window]))/((2*window))
 
-win = 10
+win = 5
 step_on = 0
 gap = 0
 step_size = 0
@@ -67,6 +67,7 @@ for point,i in zip(right_steps,range(len(right_steps))):
 			if gap > win:
 				gap = 0
 				step_on = 0
+				step_size = 0
 				right_step_count = right_step_count + 1
 				rsteeeps[i] = 5;
 			else:
@@ -101,17 +102,18 @@ for point,i in zip(left_steps,range(len(left_steps))):
 			else:
 				gap = gap + 1
 
-print(left_step_count, 'Left Steps')
+print(left_step_count/2, 'Left Steps')
 
-plt.figure()
-plt.title('z and left steps')
-plt.plot(z)
-plt.plot(right_steps)
-plt.plot(rsteeeps)
+# plt.figure()
+# plt.title('z and left steps')
+# plt.plot(z)
+# plt.plot(right_steps)
+# plt.plot(rsteeeps)
+
 # plt.plot(lsteeeps)
 # plt.plot(left_steps)
 # plt.plot(divisions)
 # plt.plot(theta)
 # plt.plot(theta2[window:])
 # plt.plot(theta3[window*2:])
-plt.show()
+# plt.show()
