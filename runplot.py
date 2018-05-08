@@ -6,7 +6,7 @@ import os
 folder  = sys.argv[1]
 
 for file in os.listdir(folder):
-	if '.csv' in file:
+	if '.csv' in file and 'aggregate' not in file:
 		path = os.path.join(folder,file)
 		f = open(path)
 		d = pd.read_csv(f)
