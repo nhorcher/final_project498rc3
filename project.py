@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.path as mpath
 
 run_lint = sys.argv[2]
 folder = sys.argv[1]
@@ -33,6 +34,7 @@ d = pd.read_csv(path)
 
 x = d['X']
 y = d['Y']
+d['Z'] = -d['Z']
 z = d['Z']
 
 right_steps = np.zeros(len(z))
@@ -110,3 +112,24 @@ else:
 
 print('Steps: ', right_step_count*2)
 print('Distance: ', dist)
+
+folder  = sys.argv[1]
+file = 'acceleration.csv';
+path = os.path.join(folder,file)
+d = pd.read_csv(path)
+x = d['X']
+
+
+# rsteeeps[rsteeeps!=0] = x[np.where(rsteeeps!=0)[0]]
+# print(np.where(rsteeeps!=0)[0])
+rsteeeps[rsteeeps==0] = float('nan')
+
+circ = mpath.Path.unit_circle()
+
+plt.figure()
+plt.plot(x)
+plt.plot(-rsteeeps/5, marker=circ)
+plt.title('X Acceleration')
+plt.xlabel('Sample (n)')
+plt.ylabel('Magnitude')
+plt.show()
